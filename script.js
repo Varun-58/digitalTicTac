@@ -1,135 +1,184 @@
-//Variables
-let turnsX = [];
-let turnsO = [];
-let turnO = true;
-let win = false;
-let XwinCount = 0;
-let OwinCount = 0;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Bitcount+Single:wght@100..900&family=Cabin+Sketch:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Supermercado+One&display=swap');
 
-let xScore = document.querySelector(".xScor span")
-let oScore = document.querySelector(".oScor span")
-
-const buttons = document.querySelectorAll(".btn");
-const winText = document.querySelector(".winText");
-const play = document.querySelector(".playAgain");
-const reset = document.querySelector(".resetScore");
-
-const btnSound = new Audio("./ting.mp3");
-const clickSound = new Audio("./pup.wav");
-
-const winPatterns = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
-
-//Functions
-function scoreUpdate(){
-  xScore.textContent = `${XwinCount}`;
-  oScore.textContent = `${OwinCount}`;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Baloo 2", sans-serif;
 }
 
-function checkWin() {
-  for (const pattern of winPatterns) {
-    if (buttons[pattern[0]].textContent !== "" && buttons[pattern[0]].textContent === buttons[pattern[1]].textContent && buttons[pattern[1]].textContent === buttons[pattern[2]].textContent) {
-      winText.textContent = `${buttons[pattern[0]].textContent} wins`;
-      win = true;
+body{
+  min-height: 100vh;
+}
 
+.navBar {
+  height: 40px;
+  background: #cacaca;
+  display: flex;
+  align-items: center;
+}
 
-      if(buttons[pattern[0]].textContent === "X"){
-        XwinCount++;
-      } else {
-        OwinCount++;
-      }
+.title {
+  font-size: 2rem;
+  margin: 0 auto 0 13px
+}
 
-      scoreUpdate();
+.scoreBord {
+  height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-right: 20px;
+}
 
-      buttons.forEach((btn)=>{
-        btn.disabled = true;
-      })
-    }
+.xScor {
+  height: 40px;
+  width: 96px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+.xScor span{
+  padding-left: 4px;
+}
+
+.oScor {
+  height: 40px;
+  width: 96px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+.oScor span{
+  padding-left: 4px;
+}
+
+.gameCont {
+  height: 180px;
+  width: 180px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin: 140px auto;
+  position: relative;
+}
+
+.winLine{
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #848484;
+  border-radius: 999px;
+  transform-origin: center left;
+  transition: width 0.4s ease-in;
+}
+
+.btn {
+  height: 60px;
+  width: 60px;
+  background-color: white;
+  color: black;
+  border: none;
+  font-size: 3.6rem;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.bL {
+  border-left: 2px solid rgb(177, 177, 177);
+}
+
+.bR {
+  border-right: 2px solid rgb(177, 177, 177);
+}
+
+.bT {
+  border-top: 2px solid rgb(177, 177, 177);
+}
+
+.bB {
+  border-bottom: 2px solid rgb(177, 177, 177);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vmin;
+}
+
+.resultContainer {
+  height: 180px;
+  width: 180px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.winText {
+  font-size: 2rem;
+}
+
+.playAgain {
+  height: 28px;
+  width: 90px;
+  border: 1.3px solid #8b8b8b;
+  border-radius: 999px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resetScore {
+  height: 28px;
+  width: 90px;
+  border: 1.3px solid #8b8b8b;
+  border-radius: 999px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* footer{
+  margin-top: auto;
+} */
+
+/* mediaQuery */
+@media screen and (max-width: 636px) {
+  .title{
+    font-size: 1.4rem;
+    margin-left: 10px;
+  }
+
+  .scoreBord{
+    width: 170px;
+    margin-right: 10px;
+    gap: 10px;
+  }
+
+  .xScor,
+  .oScor{
+    width: 83px;
+  }
+
+  main{
+    flex-direction: column;
+    gap: 0;
   }
 }
-
-buttons.forEach((btn, idx) => {
-  btn.addEventListener("click", () => {
-    btnSound.currentTime = 0;
-    btnSound.play();
-
-    if (turnO == true) {
-      btn.style.color = "#008fff";
-      btn.style.textShadow = "1px 1px 3px #008fff";
-
-      if (turnsO.length < 3) {
-        btn.textContent = "O";
-        turnsO.push(btn);
-        btn.disabled = true;
-      } else {
-        btn.textContent = "O";
-        turnsO.push(btn);
-        btn.disabled = true;
-        checkWin();
-        if (!win) {
-          let oldbtn = turnsO.shift();
-          oldbtn.textContent = "";
-          oldbtn.disabled = false;
-        }
-      }
-
-      turnO = false;
-      checkWin();
-    } else {
-      btn.style.color = "#f70000";
-      btn.style.textShadow = "1px 1px 3px #f70000";
-
-      if (turnsX.length < 3) {
-        btn.textContent = "X";
-        turnsX.push(btn);
-        btn.disabled = true;
-      } else {
-        btn.textContent = "X";
-        turnsX.push(btn);
-        btn.disabled = true;
-        checkWin();
-        if (!win) {
-          let oldbtn = turnsX.shift();
-          oldbtn.textContent = "";
-          oldbtn.disabled = false;
-        }
-      }
-
-      turnO = true;
-      checkWin();
-    }
-  })
-})
-
-play.addEventListener("click", ()=>{
-  clickSound.currentTime = 0;
-  clickSound.play();
-
-  buttons.forEach((btn)=>{
-    btn.disabled = false;
-    btn.textContent = "";
-    turnO = true;
-    win = false;
-    turnsO.length = 0;
-    turnsX.length = 0;
-    winText.textContent = "";
-  })
-})
-
-reset.addEventListener("click", ()=>{
-  clickSound.currentTime = 0;
-  clickSound.play();
-
-  OwinCount = 0;
-  XwinCount = 0;
-  xScore.textContent = "0";
-  oScore.textContent = "0";
-})
