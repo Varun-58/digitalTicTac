@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicTac</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="navBar">
+      <div class="title">Tic Tac Toe</div>
+      <div class="scoreBord">
+        <div class="xScor">X->Win : <span>0</span></div>
+        <div class="oScor">O->Win : <span>0</span></div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="gameCont">
+        <button class="btn bR bB"></button>
+        <button class="btn bL bB bR"></button>
+        <button class="btn bL bB"></button>
+        <button class="btn bT bR bB"></button>
+        <button class="btn bT bR bB bL"></button>
+        <button class="btn bT bL bB"></button>
+        <button class="btn bT bR"></button>
+        <button class="btn bL bT bR"></button>
+        <button class="btn bT bL"></button>
+      </div>
+    </section>
+    <section>
+      <div class="resultContainer">
+        <div class="winText"></div>
+        <button class="playAgain"><i class="fa-solid fa-repeat"></i>Play</button>
+        <button class="resetScore">ResetScore</button>
+      </div>
+    </section>
+  </main>
+  <!-- <footer>
+    <div>Copyright Claim</div>
+  </footer> -->
+  <script src="script.js"></script>
+</body>
+
+</html>
