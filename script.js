@@ -13,6 +13,10 @@ const buttons = document.querySelectorAll(".btn");
 const winText = document.querySelector(".winText");
 const play = document.querySelector(".playAgain");
 const reset = document.querySelector(".resetScore");
+
+const btnSound = new Audio("./ting.mp3");
+const clickSound = new Audio("./pup.wav");
+
 const winPatterns = [
   [0, 1, 2],
   [3, 4, 5],
@@ -54,6 +58,9 @@ function checkWin() {
 
 buttons.forEach((btn, idx) => {
   btn.addEventListener("click", () => {
+    btnSound.currentTime = 0;
+    btnSound.play();
+
     if (turnO == true) {
       btn.style.color = "#008fff";
       btn.style.textShadow = "1px 1px 3px #008fff";
@@ -66,6 +73,7 @@ buttons.forEach((btn, idx) => {
         btn.textContent = "O";
         turnsO.push(btn);
         btn.disabled = true;
+        checkWin();
         if (!win) {
           let oldbtn = turnsO.shift();
           oldbtn.textContent = "";
@@ -102,6 +110,9 @@ buttons.forEach((btn, idx) => {
 })
 
 play.addEventListener("click", ()=>{
+  clickSound.currentTime = 0;
+  clickSound.play();
+
   buttons.forEach((btn)=>{
     btn.disabled = false;
     btn.textContent = "";
@@ -114,6 +125,9 @@ play.addEventListener("click", ()=>{
 })
 
 reset.addEventListener("click", ()=>{
+  clickSound.currentTime = 0;
+  clickSound.play();
+
   OwinCount = 0;
   XwinCount = 0;
   xScore.textContent = "0";
