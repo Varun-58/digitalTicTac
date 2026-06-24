@@ -150,6 +150,16 @@ main {
 
 /* mediaQuery */
 @media screen and (max-width: 636px) {
+  .title{
+    font-size: 1.6rem;
+    margin-left: 10px;
+  }
+
+  .scoreBord{
+  gap: 10px;
+  margin-right: 10px;
+  }
+
   main{
     flex-direction: column;
     gap: 0;
