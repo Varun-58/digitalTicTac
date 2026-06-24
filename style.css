@@ -151,13 +151,19 @@ main {
 /* mediaQuery */
 @media screen and (max-width: 636px) {
   .title{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-left: 10px;
   }
 
   .scoreBord{
-  gap: 10px;
-  margin-right: 10px;
+    width: 170px;
+    margin-right: 10px;
+    gap: 10px;
+  }
+
+  .xScor,
+  .oScor{
+    width: 83px;
   }
 
   main{
