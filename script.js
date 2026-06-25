@@ -72,6 +72,7 @@ buttons.forEach((btn, idx) => {
         btn.textContent = "O";
         turnsO.push(btn);
         btn.disabled = true;
+        checkWin();
       } else {
         btn.textContent = "O";
         turnsO.push(btn);
@@ -84,8 +85,7 @@ buttons.forEach((btn, idx) => {
         }
       }
 
-      turnO = false;
-      checkWin();
+      turnO = false;
     } else {
       btn.style.color = "#f70000";
       btn.style.textShadow = "1px 1px 3px #f70000";
@@ -94,6 +94,7 @@ buttons.forEach((btn, idx) => {
         btn.textContent = "X";
         turnsX.push(btn);
         btn.disabled = true;
+        checkWin();
       } else {
         btn.textContent = "X";
         turnsX.push(btn);
@@ -106,8 +107,7 @@ buttons.forEach((btn, idx) => {
         }
       }
 
-      turnO = true;
-      checkWin();
+      turnO = true;
     }
   })
 })
